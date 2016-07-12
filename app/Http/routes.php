@@ -12,12 +12,12 @@
  */
 
 Route::get('/', "ArticleController@index");
-Route::get('/articles/{id}', 'ArticleController@show');
+Route::get('/articles/{id}', ['as' => 'articles', 'uses' => 'ArticleController@show']);
 
 Route::auth();
 
 Route::group(['middleware' => ['auth']], function () {
-    Route::get('/home', 'HomeController@index');
+    Route::get('/admin/dashboard', ['as' => 'admin.dashboard', 'uses' => 'AdminController@dashboard']);
 });
 
 
